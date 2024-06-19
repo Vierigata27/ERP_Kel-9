@@ -21,11 +21,14 @@ class DashboardController extends Controller
             $employees = $employees ?? [];
             $barang = $barang ?? [];
             $pemasaran = $pemasaran ?? [];
+           
 
             $totalKaryawan = count($employees);
+            $totalBarang = count($barang);
+            $totalPemasaran = count($pemasaran);
     
             // Mengirimkan data ke tampilan untuk ditampilkan
-            return view('admin.dashboard', compact('employees', 'barang', 'pemasaran', 'totalKaryawan'));
+            return view('admin.dashboard', compact('employees', 'barang', 'pemasaran', 'totalKaryawan', 'totalBarang', 'totalPemasaran'));
     
         } catch (\Exception $e) {
             // Tangani kesalahan jika terjadi
@@ -62,7 +65,7 @@ class DashboardController extends Controller
     
             // Periksa apakah permintaan berhasil
             if ($response->successful()) {
-                return $response->json('data');
+                return $response->json();
             }
     
             return []; // Kembalikan array kosong jika tidak berhasil
@@ -82,7 +85,7 @@ class DashboardController extends Controller
     
             // Periksa apakah permintaan berhasil
             if ($response->successful()) {
-                return $response->json('data');
+                return $response->json();
             }
     
             return []; // Kembalikan array kosong jika tidak berhasil
